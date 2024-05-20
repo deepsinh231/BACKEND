@@ -1,9 +1,19 @@
 // require('dotenv').config({path:'./env'})
+import { app } from "./app.js";
 import connectDB from "./db/index.js";
 import dotenv from "dotenv";
 
-dotenv.config({path:'./evn'})
+dotenv.config({ path: './evn' })
+const Port = process.env.PORT || 8000;
 connectDB()
+    .then(
+        app.listen(Port, () => {
+            console.log(`Server isruning at Port : ${Port}`);
+        })
+    )
+    .catch((error) => {
+        console.log(`Mongo listen Error !!! :${error}`);
+    })
 
 
 
